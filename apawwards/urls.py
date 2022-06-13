@@ -1,20 +1,17 @@
 from django.urls import path, include
 from . import views
-from rest_framework import routers
+
 
 
 
 
 
 urlpatterns=[
-    path('', views.index, name='index'),
-    path('signup/', views.signup, name='signup'),
-    path('account/', include('django.contrib.auth.urls')),
-    path('api/', include(router.urls)),
-    path('<username>/profile', views.user_profile, name='userprofile'),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('profile/<username>/', views.profile, name='profile'),
-    path('profile/<username>/settings', views.edit_profile, name='edit'),
-    path('project/<post>', views.project, name='project'),
-    path('search/', views.search_project, name='search'),
+    path('',views.home,name='home'),
+    path('projects/(\d+)',views.projects,name='projects'),
+    path('profile/(?P<username>\w+)', views.profile, name='profile'),
+    path('uploads/',views.post_site,name='post_site'),
+    path('api/profiles/', views.ProfileList.as_view(),name='profile_list'),
+    path('api/projects/', views.ProjectsList.as_view(),name='projects_list'),
+    path('search/', views.search_results, name='search_results'),
     ]
