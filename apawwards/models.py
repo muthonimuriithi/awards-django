@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 from url_or_relative_url_field.fields import URLOrRelativeURLField
 
+
 # Create your models here.
     
     
