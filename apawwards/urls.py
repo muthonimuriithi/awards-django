@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.urls import path, include
 from . import views
 
@@ -8,7 +9,7 @@ from . import views
 
 urlpatterns=[
     path('',views.home,name='home'),
-    path('projects/<int:pk>/',views.projects,name='projects'),
+    path('project/<int:project_id>/',views.projects,name='projects'),
     path('profile<username>/', views.profile, name='profile'),
     path('uploads/',views.post_site,name='post_site'),
     path('api/profiles/', views.ProfileList.as_view(),name='profile_list'),
