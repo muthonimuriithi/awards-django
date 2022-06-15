@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-# from .permissions import IsAdminOrReadOnly
-# from .serializer import ProfileSerializer,ProjectsSerializer
+from .permissions import IsAdminOrReadOnly
+from .serializer import ProfileSerializer,ProjectsSerializer
 from .forms import ProfileEditForm,ProjectUploadForm,VotesForm,ReviewForm
 # Create your views here.
 def home(request):
@@ -131,50 +131,50 @@ def profile(request,username):
     return render(request, 'users/profile.html',{"profile":profile,"profile_details":profile_details,"projects":projects}) 
 
 
-# @login_required(login_url='/accounts/login/')
-# def post_site(request):
-#     current_user = request.user
-#     if request.method == 'POST':
-#         form = ProjectUploadForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             home = form.save(commit=False)
-#             home.profile =current_user
-#             form.save()
-#         return redirect('home')
-#     else:
-#         form =ProjectUploadForm()
+@login_required(login_url='/accounts/login/')
+def post_site(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = ProjectUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            home = form.save(commit=False)
+            home.profile =current_user
+            form.save()
+        return redirect('home')
+    else:
+        form =ProjectUploadForm()
             
-#     return render(request,'uploads.html',{"form":form,})
+    return render(request,'uploads.html',{"form":form,})
 
 
-# class ProfileList(APIView):
-#     permission_classes = (IsAdminOrReadOnly,)
-#     def get(self,request,format=None):
-#         all_profiles = Profile.objects.all()
-#         serializers = ProfileSerializer(all_profiles,many=True)
-#         return Response(serializers.data)
+class ProfileList(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+    def get(self,request,format=None):
+        all_profiles = Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles,many=True)
+        return Response(serializers.data)
     
-#     def post(self, request, format=None):
-#         serializers = ProfileSerializer(data=request.data)
-#         if serializers.is_valid():
-#             serializers.save()
-#             return Response(serializers.data, status=status.HTTP_201_CREATED)
-#         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request, format=None):
+        serializers = ProfileSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
     
     
-# class ProjectsList(APIView):
-#     permission_classes = (IsAdminOrReadOnly,)
-#     def get(self,request,format=None):
-#         all_projects = Projects.objects.all()
-#         serializers = ProjectsSerializer(all_projects,many=True)
-#         return Response(serializers.data)
+class ProjectsList(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+    def get(self,request,format=None):
+        all_projects = Projects.objects.all()
+        serializers = ProjectsSerializer(all_projects,many=True)
+        return Response(serializers.data)
     
-#     def post(self, request, format=None):
-#         serializers = ProjectsSerializer(data=request.data)
-#         if serializers.is_valid():
-#             serializers.save()
-#             return Response(serializers.data, status=status.HTTP_201_CREATED)
-#         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request, format=None):
+        serializers = ProjectsSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
 
