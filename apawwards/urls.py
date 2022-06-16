@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from . import settings
+from django.conf.urls.static import  static
 
 
 
@@ -15,4 +17,4 @@ urlpatterns=[
     path('api/profiles/', views.ProfileList.as_view(),name='profile_list'),
     path('api/projects/', views.ProjectsList.as_view(),name='projects_list'),
     path('search/', views.search_results, name='search_results'),
-    ]
+    ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
