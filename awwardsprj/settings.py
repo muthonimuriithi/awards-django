@@ -18,9 +18,9 @@ import dj_database_url
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-MODE=config("MODE", default="dev")
-SECRET_KEY =('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+MODE = config("MODE", default="dev")
+SECRET_KEY=('SECRET_KEY')
+DEBUG = os.environ.get('DEBUG', True)
 DEBUG=True
 # development
 if config('MODE')=="dev":
@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'apawwards',
     'bootstrap4',
     'rest_framework',
+    'django_registration',
 ]
 
 MIDDLEWARE = [
