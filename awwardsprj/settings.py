@@ -50,6 +50,8 @@ DATABASES['default'].update(db_from_env)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
+SECRET_KEY='django-insecure-#&fhq!&*^992@m=g$+740r-3jqwrum$nt=t5*_elfw30bb=_25'
+
 
 # Application definition
 
