@@ -35,7 +35,7 @@ git clone: https://github.com/muthonimuriithi/awards-django.git
 
 ## Live Link
 
-* [Click Here](https://instaloise.herokuapp.com/) to view my application.
+* [Click Here](https://awwardsmsoo.herokuapp.com/) to view my application.
 
 
 ## Contact Information
