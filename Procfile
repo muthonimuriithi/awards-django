@@ -1,1 +1,1 @@
-web: gunicorn awwardsprj.wsgi
+web: gunicorn awwardsprj.wsgi --log-file -
