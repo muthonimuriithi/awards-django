@@ -12,7 +12,7 @@ from .forms import ProfileEditForm,ProjectUploadForm,VotesForm,ReviewForm
 # Create your views here.
 def home(request):
     projects = Projects.objects.all()
-    
+    print(projects)
     context = {
         'projects':projects,
     }
